@@ -4,13 +4,13 @@ import "./Contact.css"
 import { FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa'
 const Contact = () => {
   const [formState, setFormState]=useState("");
-  const onSubmit=async (event)=>{
+  const onSubmit=async(event)=>{
     event.preventDefault();
-    setFormState("Sending...");
+    setFormState(" Sending...");
     const formData= new FormData(event.target);
-    FormData.append("access_key", "3bf3b881-86d9-46fe-96e2-5b344557a24c");
+    formData.append("access_key", "3bf3b881-86d9-46fe-96e2-5b344557a24c");
     const obj=Object.fromEntries(formData);
-    const json= JSON.stringify(object);
+    const json= JSON.stringify(obj);
     try{
       const res=await fetch("https://api.web3forms.com/submit",{
       method: "POST",
@@ -19,7 +19,7 @@ const Contact = () => {
           Accept: "application/json"
       },
       body: json
-    }).then((res)=>re.json());
+    }).then((res)=>res.json());
     if(res.success){
       setFormState("Email sent successfully!");
       event.target.reset();
@@ -55,7 +55,7 @@ const Contact = () => {
                 <textarea required name="contact" id="message" placeholder='Write your message'></textarea>
             </label>
             <button type="submit">Submit now <FaArrowRight /></button>
-            <span className="msg">{formState}</span>
+            <small className="msg">{formState}</small>
         </form>
     </div>
   )
