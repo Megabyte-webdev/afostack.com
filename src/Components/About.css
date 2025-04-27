@@ -55,3 +55,9 @@
     max-width: 95%;
     font-size: calc(1vmax + 6px);
 }
+
+@media (max-width:600px){
+ .about-left{
+    flex: 1 0 300px;
+ }
+}
